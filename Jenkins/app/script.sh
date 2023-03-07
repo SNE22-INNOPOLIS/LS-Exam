@@ -8,7 +8,7 @@ sudo apt-get install \
     gnupg \
     lsb-release -y
 
-sudo mkdir -m 0755 -p /etc/apt/keyrings -y || true
+sudo mkdir -m 0755 -p /etc/apt/keyrings || true
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg || true
 
 echo \
@@ -16,6 +16,7 @@ echo \
 
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y || true
+sudo apt-get install docker-compose -y || true
 sudo usermod -aG docker samson
 
 sudo docker-compose up -d --build
