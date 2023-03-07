@@ -16,7 +16,7 @@ echo \
 sudo apt-get update || true
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin || true
 sudo apt-get install -y docker-compose || true
-sudo usermod -aG docker samson || true
+sudo usermod -aG docker ubuntu || true
 
 sudo docker-compose up -d --build
 
