@@ -2,7 +2,6 @@ provider "aws" {
     region = "us-east-1"  
 }
 
-
 variable vpc_cidr_bloc {}
 variable subnet_cidr_block {}
 variable avail_zone {}
@@ -13,7 +12,6 @@ variable public_key {}
 variable private_key {}
 variable script {}
 variable Docker {}
-
 
 // vpc configuration
 resource "aws_vpc" "DevOps-Lab" {
