@@ -12,8 +12,7 @@ variable allowed_ip_addresses {}
 variable public_key {}
 variable private_key {}
 variable script {}
-variable Dockerfile {}
-variable app {}
+variable Docker {}
 
 
 // vpc configuration
@@ -60,8 +59,14 @@ resource "aws_default_security_group" "default-sg" {
   vpc_id     = aws_vpc.DevOps-Lab.id
   ingress {
     protocol = "tcp"
-    from_port = 80
-    to_port = 80
+    from_port = 8080
+    to_port = 8080
+    cidr_blocks = [ "${var.allowed_ip_addresses}" ]
+  }
+  ingress {
+    protocol = "tcp"
+    from_port = 50000
+    to_port = 50000
     cidr_blocks = [ "${var.allowed_ip_addresses}" ]
   }
   ingress {
@@ -98,7 +103,7 @@ output "aws_ami_id" {
   }
 
 // EC2 instance configuration
-resource "aws_instance" "testifi-vm" {
+resource "aws_instance" "jenkins-vm" {
   ami = data.aws_ami.latest-ubuntu-ami.id
   instance_type = "t2.micro"
 
@@ -113,30 +118,24 @@ resource "aws_instance" "testifi-vm" {
 }
 
 // deploying the application using docker over ssh
-resource "null_resource" "docker_app_exec" {    
+resource "null_resource" "jenkins_exec" {    
     connection {
     type = "ssh"
-    host = aws_instance.testifi-vm.public_ip
+    host = aws_instance.jenkins-vm.public_ip
     user = "ubuntu"
     private_key = file(var.private_key)
     }
   
-  // copying the container provisioning script to the newly provisioned EC2
+  // copying the Jenkins provisioning script to the newly provisioned EC2
   provisioner "file" {
     source      = "${var.script}"
     destination = "/tmp/script.sh"
   }
 
-  // copying the dockerfile to the newly provisioned EC2
+  // copying the docker-compose file to the newly provisioned EC2
   provisioner "file" {
-    source      = "${var.Dockerfile}"
-    destination = "Dockerfile"
-  }
-  
-  // copying the html app to the newly provisioned EC2
-  provisioner "file" {
-    source      = "${var.app}"
-    destination = "index.html"
+    source      = "${var.Docker}"
+    destination = "docker-compose.yaml"
   }
 
   // making the script file to executable and executing on newly provisioned EC2
@@ -147,13 +146,13 @@ resource "null_resource" "docker_app_exec" {
     ]
   }
 
-  depends_on = [ aws_instance.testifi-vm ]
+  depends_on = [ aws_instance.jenkins-vm ]
 
 }
 
 // outputs public ip address in stdout
 output "ec2_public_ip" {
-  value = aws_instance.testifi-vm.public_ip
+  value = aws_instance.jenkins-vm.public_ip
 }
 
 // ssh-key pair config
