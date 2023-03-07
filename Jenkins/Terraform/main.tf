@@ -123,24 +123,24 @@ resource "null_resource" "jenkins_exec" {
     user = "ubuntu"
     private_key = file(var.private_key)
     }
-  
-  // copying the Jenkins provisioning script to the newly provisioned EC2
-  provisioner "file" {
-    source      = "${var.script}"
-    destination = "/tmp/script.sh"
-  }
 
   // copying the docker-compose file to the newly provisioned EC2
   provisioner "file" {
     source      = "${var.Docker}"
-    destination = "docker-compose.yaml"
+    destination = "docker-compose.yml"
   }
 
-  // making the script file to executable and executing on newly provisioned EC2
+  // copying the Jenkins provisioning script to the newly provisioned EC2
+  provisioner "file" {
+    source      = "${var.script}"
+    destination = "script.sh"
+  }
+
+  // making the script file executable and executing on newly provisioned EC2
   provisioner "remote-exec" {
     inline = [
-      "sudo chmod +x /tmp/script.sh",
-      "/tmp/script.sh args"
+      "sudo chmod +x script.sh",
+      "./script.sh"
     ]
   }
 
