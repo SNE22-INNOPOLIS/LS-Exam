@@ -121,7 +121,7 @@ resource "aws_instance" "LS-Exam" {
 
 resource "null_resource" "ansible" {
 
-  provisioner "remote-exec"{
+  provisioner "local-exec"{
     inline = ["echo 'Wait untill ssh is ready'"]
 
     connection {
@@ -130,6 +130,7 @@ resource "null_resource" "ansible" {
       private_key = file(var.private_key_location)
       host = aws_instance.LS-Exam.public_ip
     }
+    
   }
   provisioner "local-exec" {
     command = "ansible-playbook -i ${aws_instance.LS-Exam.public_ip}, --private-key ${var.private_key_location} ${var.ansible-script}"
