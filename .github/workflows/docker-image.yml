@@ -12,12 +12,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Build the application's Docker image
-      run: docker build -t samsonidowu/ls-exam-image:$(date +%s) ./html_app
+      run: docker build -t samsonidowu/ls-exam-image:$(date) ./html_app
 
     - name: Run container
-      run: docker run -d -p 80:80 samsonidowu/ls-exam-image:$(date +%s)    
+      run: docker run -d -p 80:80 samsonidowu/ls-exam-image:$(date)    
 
     - name: Test Application
       run: curl http://localhost
