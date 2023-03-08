@@ -14,10 +14,10 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build the application's Docker image
-      run: docker build -t rp1sne22/ls-exam-image:$(date +'%Y-%m-%d') ./html_app
+      run: docker build -t rp1sne22/ls-exam-image:$(date +'%Y-%m-%d-%H-%M') ./html_app
 
     - name: Run container
-      run: docker run -d -p 80:80 rp1sne22/ls-exam-image:$(date +'%Y-%m-%d-%H-%M-%S')   
+      run: docker run -d -p 80:80 rp1sne22/ls-exam-image:$(date +'%Y-%m-%d-%H-%M')   
 
     - name: Test Application
       run: curl --max-time 10 http://localhost
@@ -26,6 +26,6 @@ jobs:
       run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKERHUB_PASSWD}}
 
     - name: Push to Image to Docker Hub
-      run: docker push rp1sne22/ls-exam-image:$(date +'%Y-%m-%d')
+      run: docker push rp1sne22/ls-exam-image:$(date +'%Y-%m-%d-%H-%M') 
     
 
