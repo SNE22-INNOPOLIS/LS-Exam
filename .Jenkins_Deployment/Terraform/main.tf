@@ -8,6 +8,9 @@ variable avail_zone {}
 variable env_prefix {}
 variable myip_address {}
 variable public_key_location {}
+variable ssh-user{}
+variable private_key_location {}
+variable ansible-script {}
 
 resource "aws_vpc" "LS-Exam-vpc" {
   cidr_block = var.vpc_cidr_bloc
@@ -120,7 +123,7 @@ resource "aws_instance" "LS-Exam" {
 
 
 resource "null_resource" "ansible" {
-/*
+
   provisioner "remote-exec"{
     inline = ["echo 'Wait untill ssh is ready'"]
 
@@ -131,7 +134,7 @@ resource "null_resource" "ansible" {
       host = aws_instance.LS-Exam.public_ip
     }
     
-  } */
+  } 
   provisioner "local-exec" {
     command = "ansible-playbook -i ${aws_instance.LS-Exam.public_ip}, --private-key ${var.private_key_location} ${var.ansible-script}"
   }
