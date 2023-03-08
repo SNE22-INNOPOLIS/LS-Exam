@@ -15,5 +15,5 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the application's Docker image
-      run: docker build ./app -t ls-exam-image:$(date +%s)
+      run: docker build ./html_app -t ls-exam-image:$(date +%s)
   
