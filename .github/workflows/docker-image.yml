@@ -13,9 +13,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the application's Docker image
-      run: docker build ./html_app -t samsonidowu/ls-exam-image:$(date +%s)
+      run: docker build ./html_app -t samsonidowu/ls-exam-image:$(date)
     - name: Run container
-      run: docker run -d -p 80:80 --name ls-exam-app samsonidowu/ls-exam-image:$(date +%s)    
+      run: docker run -d -p 80:80 --name ls-exam-app samsonidowu/ls-exam-image  
     - name: Test Application
       run: curl http://localhost
            echo test successful
