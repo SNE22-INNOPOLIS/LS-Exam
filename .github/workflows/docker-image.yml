@@ -17,7 +17,7 @@ jobs:
       run: docker build -t rp1sne22/ls-exam-image:$(date +'%Y-%m-%d') ./html_app
 
     - name: Run container
-      run: docker run -d -p 80:80 rp1sne22/ls-exam-image:$(date +'%Y-%m-%d')   
+      run: docker run -d -p 80:80 rp1sne22/ls-exam-image:$(date +'%Y-%m-%d-%H-%M-%S')   
 
     - name: Test Application
       run: curl --max-time 10 http://localhost
