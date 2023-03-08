@@ -6,7 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-runs-on: ubuntu-latest
 jobs:
   
 
@@ -25,3 +24,5 @@ jobs:
       run: docker run -d -p 80:80 --name ls-exam-app ls-exam-image:$(date +%s)
       run: curl http://localhost
       run: echo test successful
+
+runs-on: ubuntu-latest
