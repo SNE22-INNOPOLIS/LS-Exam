@@ -14,10 +14,10 @@ jobs:
     - uses: actions/checkout@v3
 
     - name: Build the application's Docker image
-      run: docker build -t samsonidowu/ls-exam-image:$(date) ./html_app
+      run: docker build -t samsonidowu/ls-exam-image:$(date +'%Y-%m-%d') ./html_app
 
     - name: Run container
-      run: docker run -d -p 80:80 samsonidowu/ls-exam-image:$(date)    
+      run: docker run -d -p 80:80 samsonidowu/ls-exam-image:$(date +'%Y-%m-%d')   
 
     - name: Test Application
       run: curl http://localhost
