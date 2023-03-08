@@ -116,6 +116,15 @@ resource "aws_instance" "LS-Exam" {
     Name = "${var.env_prefix}-server"
   }
 }
+
+
+
+resource "null_resource" "ansible" {
+  provisioner "local-exec" {
+    command = "ansible-playbook -i ${ansible_host_file}, config.yml"
+  }
+}
+
 /*
 resource "aws_route_table_association" "assoc-rtb-subnet" {
   subnet_id = aws_subnet.LS-Exam-subnet.id

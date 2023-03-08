@@ -1,6 +1,6 @@
 ---
 - name: Deploy Jenkins container with Nginx proxy using Docker
-  hosts: 34.203.13.70
+  hosts: all
   become: true
 
   roles:
