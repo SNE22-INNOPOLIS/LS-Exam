@@ -126,7 +126,7 @@ resource "null_resource" "ansible" {
 
     connection {
       type = "ssh"
-      user = ${var.ssh-user}
+      user = ubuntu
       private_key = file(var.private_key_location)
       host = aws_instance.LS-Exam.public_ip
     }
