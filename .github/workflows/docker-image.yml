@@ -7,13 +7,20 @@ on:
     branches: [ "main" ]
 
 jobs:
+  runs-on: ubuntu-latest
 
   build:
-
-    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
     - name: Build the application's Docker image
       run: docker build ./html_app -t ls-exam-image:$(date +%s)
-  
+
+  test:
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Run and Test container
+      run: docker run -d -p 80:80 --name ls-exam-app ls-exam-image:$(date +%s)
+      run: curl http://localhost
+      run: echo test successful
