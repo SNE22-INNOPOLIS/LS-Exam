@@ -4,4 +4,8 @@ avail_zone = "us-east-1a"
 env_prefix = "dev"
 myip_address = "212.102.61.153/32"
 public_key_location = "/home/rolly/.ssh/id_rsa.pub"
+private_key_location = "/home/rolly/.ssh/id_rsa"
+ssh-user = "ubuntu"
+ansible-script = "./Ansible/config.yaml"
+ansible_host_file = "/home/rolly/LS-Exam/.Jenkins_Deployment/Ansible/hosts"
 
