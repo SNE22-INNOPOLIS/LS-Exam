@@ -36,3 +36,5 @@ jobs:
         docker push rp1sne22/ls-exam-image:$(git rev-parse --short ${{ github.sha }})
         echo "image pushed successfully to artifact repository>"
     
+    - name: Trigger git-lab deployment pipeline
+      run: curl -X POST -F token=glptt-06d418cae712359b75e2333a9251d2f618218fb6 -F ref=main https://gitlab.com/api/v4/projects/44174197/trigger/pipeline
