@@ -11,7 +11,6 @@ variable allowed_ip_addresses {}
 variable public_key {}
 variable private_key {}
 variable script {}
-variable Docker {}
 
 // vpc configuration
 resource "aws_vpc" "DevOps-Lab" {
@@ -57,14 +56,8 @@ resource "aws_default_security_group" "default-sg" {
   vpc_id     = aws_vpc.DevOps-Lab.id
   ingress {
     protocol = "tcp"
-    from_port = 8080
-    to_port = 8080
-    cidr_blocks = [ "${var.allowed_ip_addresses}" ]
-  }
-  ingress {
-    protocol = "tcp"
-    from_port = 50000
-    to_port = 50000
+    from_port = 80
+    to_port = 80
     cidr_blocks = [ "${var.allowed_ip_addresses}" ]
   }
   ingress {
@@ -123,12 +116,6 @@ resource "null_resource" "jenkins_exec" {
     user = "ubuntu"
     private_key = file(var.private_key)
     }
-
-  // copying the docker-compose file to the newly provisioned EC2
-  provisioner "file" {
-    source      = "${var.Docker}"
-    destination = "docker-compose.yml"
-  }
 
   // copying the Jenkins provisioning script to the newly provisioned EC2
   provisioner "file" {
