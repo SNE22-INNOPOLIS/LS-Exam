@@ -34,5 +34,5 @@ jobs:
       run: | 
         docker push rp1sne22/ls-exam-image:latest
         docker push rp1sne22/ls-exam-image:$(git rev-parse --short ${{ github.sha }})
-        echo "image pushed successfully to artifact repository>>>"
+        echo "image pushed successfully to artifact repository>"
     
