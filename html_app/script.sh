@@ -21,3 +21,5 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 sudo usermod -aG docker ubuntu
 sudo docker build -t ls-exam-image . || true
 sudo docker run -d -p 80:80 --name ls-exam-app ls-exam-image || true
+
+echo 'done'
