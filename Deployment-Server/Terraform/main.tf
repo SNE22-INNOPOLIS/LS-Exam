@@ -108,7 +108,7 @@ resource "aws_instance" "production-svr" {
   }
 }
 
-// deploying the application using docker over ssh
+// configuring the environment using a bash script over ssh
 resource "null_resource" "production-svr_exec" {    
     connection {
     type = "ssh"
@@ -117,7 +117,7 @@ resource "null_resource" "production-svr_exec" {
     private_key = file(var.private_key)
     }
 
-  // copying the Jenkins provisioning script to the newly provisioned EC2
+  // copying the bash script to the newly provisioned EC2
   provisioner "file" {
     source      = "${var.script}"
     destination = "script.sh"
