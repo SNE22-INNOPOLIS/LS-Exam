@@ -1,0 +1,23 @@
+name: LS-Exam CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the application's Docker image
+      run: docker build -t rp1sne22/ls-exam-image ./html_app
+
+    - name: Run container
+      run: docker run -d -p 80:80 rp1sne22/ls-exam-image   
+
+    - name: Test Application
+      run: curl --max-time 10 http://localhost
