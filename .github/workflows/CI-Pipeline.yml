@@ -3,8 +3,8 @@ name: LS-Exam CI
 on:
   push:
     branches: [ "main" ]
-#  pull_request:
-#    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   
@@ -35,4 +35,3 @@ jobs:
         docker push rp1sne22/ls-exam-image:latest
         docker push rp1sne22/ls-exam-image:$(git rev-parse --short ${{ github.sha }})
         echo "image pushed successfully to artifact repository>"
-        
