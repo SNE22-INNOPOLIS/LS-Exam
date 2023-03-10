@@ -94,7 +94,7 @@ output "aws_ami_id" {
   }
 
 // EC2 instance configuration
-resource "aws_instance" "jenkins-vm" {
+resource "aws_instance" "production-svr" {
   ami = data.aws_ami.latest-ubuntu-ami.id
   instance_type = "t2.micro"
 
@@ -109,10 +109,10 @@ resource "aws_instance" "jenkins-vm" {
 }
 
 // deploying the application using docker over ssh
-resource "null_resource" "jenkins_exec" {    
+resource "null_resource" "production-svr_exec" {    
     connection {
     type = "ssh"
-    host = aws_instance.jenkins-vm.public_ip
+    host = aws_instance.production-svr.public_ip
     user = "ubuntu"
     private_key = file(var.private_key)
     }
@@ -131,13 +131,13 @@ resource "null_resource" "jenkins_exec" {
     ]
   }
 
-  depends_on = [ aws_instance.jenkins-vm ]
+  depends_on = [ aws_instance.production-svr ]
 
 }
 
 // outputs public ip address in stdout
 output "ec2_public_ip" {
-  value = aws_instance.jenkins-vm.public_ip
+  value = aws_instance.production-svr.public_ip
 }
 
 // ssh-key pair config
