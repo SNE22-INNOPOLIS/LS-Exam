@@ -17,3 +17,11 @@
     name: nginx
     state: started
     enabled: true
+
+# Next run the script for configuring nginx to proxy our app over ssl
+
+- name: Make the script executable
+  shell: chmod +x .Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+
+- name: Execute the local script
+  script: .Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
