@@ -19,17 +19,17 @@
   hosts: all
   tasks:
     systemd:
-      name: docker
-      state: started
-      enabled: true 
+      - name: docker
+      - state: started
+      - enabled: true 
 
 - name: Make sure Nginx is running and enabled
   hosts: all
   tasks: 
     systemd:
-      name: nginx
-      state: started
-      enabled: true
+      - name: nginx
+      - state: started
+      - enabled: true
 
 # Next run the script for configuring nginx to proxy our app over ssl
 
