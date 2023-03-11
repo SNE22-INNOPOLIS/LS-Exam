@@ -19,4 +19,5 @@ sudo ln -s /etc/nginx/sites-available/ls-exam-app.conf /etc/nginx/sites-enabled/
 sudo cat tls-config > /etc/nginx/sites-available/ls-exam-app.conf
 
 # restart nginx
+
 sudo systemctl restart nginx.service
