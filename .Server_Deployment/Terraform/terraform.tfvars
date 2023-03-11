@@ -1,5 +1,5 @@
 vpc_cidr_bloc = "10.0.0.0/16"
-subnet_cidr_block = "10.1.1.0/24"
+subnet_cidr_block = "10.0.1.0/24"
 avail_zone = "us-east-1e"
 env_prefix = "LS-Exam"
 myip_address = "0.0.0.0/0"
