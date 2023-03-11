@@ -7,7 +7,7 @@ sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out nginx
 
 # Download the recquired config file for creating nginx host
 cd
-wget https://github.com/SNE22-INNOPOLIS/LS-Exam/blob/dev/.Server_Deployment/Ansible/roles/nginx/tls-config
+#wget https://github.com/SNE22-INNOPOLIS/LS-Exam/blob/dev/.Server_Deployment/Ansible/roles/nginx/tls-config
 sudo touch /etc/nginx/sites-available/ls-exam-app.conf
 
 # create a symlink to enable the webapp host

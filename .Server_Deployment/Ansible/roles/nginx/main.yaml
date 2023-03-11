@@ -20,6 +20,13 @@
 
 # Next run the script for configuring nginx to proxy our app over ssl
 
+- name: Copy nginx config scriptfile to remote server
+  copy:
+    src: .Server_Deployment/Ansible/roles/nginx/tls-config
+    dest: /home/ubuntu
+    remote_user: ubuntu
+    become: yes
+
 - name: Make the script executable
   shell: chmod +x .Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
 
