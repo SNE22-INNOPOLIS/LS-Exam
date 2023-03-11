@@ -10,6 +10,7 @@
 - tasks:
 
   - name: Install Docker and Nginx
+    hosts: all
     apt:
         name:
           - docker.io
@@ -17,12 +18,14 @@
         state: present
 
   - name: Make sure docker is running and enabled
+    hosts: all
     systemd:
       name: docker
       state: started
       enabled: true 
 
   - name: Make sure Nginx is running and enabled
+    hosts: all
     systemd:
       name: nginx
       state: started
@@ -31,6 +34,7 @@
 # Next run the script for configuring nginx to proxy our app over ssl
 
   - name: Copy nginx config scriptfile to remote server
+    hosts: all
     copy:
       src: /home/rolly/.Server_Deployment/Ansible/roles/nginx/tls-config
       dest: /home/ubuntu
@@ -38,7 +42,9 @@
       become: yes
 
   - name: Make the script executable
+    hosts: all
     shell: chmod +x /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
 
   - name: Execute the local script
+    hosts: all
     script: /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
