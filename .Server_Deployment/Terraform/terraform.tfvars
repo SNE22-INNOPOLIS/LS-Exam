@@ -6,6 +6,6 @@ myip_address = "0.0.0.0/0"
 public_key_location = "/home/rolly/.ssh/ls-exam.pub"
 private_key_location = "/home/rolly/.ssh/ls-exam"
 ssh-user = "ubuntu"
-ansible-script = "/home/rolly/LS-Exam/.Jenkins_Deployment/Ansible/config.yaml"
-ansible_host_file = "/home/rolly/LS-Exam/.Jenkins_Deployment/Ansible/hosts"
+ansible-script = "/home/rolly/LS-Exam/.Server_Deployment/Ansible/config.yaml"
+ansible_host_file = "/home/rolly/LS-Exam/.Server_Deployment/Ansible/hosts"
 
