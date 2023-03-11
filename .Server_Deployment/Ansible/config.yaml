@@ -46,7 +46,6 @@
         src: /home/rolly/LS-Exam/.Server_Deployment/Ansible/roles/nginx/tls-config
         dest: /home/ubuntu
         remote_user: ubuntu
-        become: yes
 
 - name: Make the script executable
   hosts: all
