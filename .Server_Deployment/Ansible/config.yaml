@@ -3,34 +3,40 @@
   hosts: all
   become: true
 
-  roles:
-  - nginx
+#  roles:
+#  - nginx
 # - jenkins
 
-#  tasks:
-#    - name: Install Docker and Nginx
-#      apt:
-#        name:
-#          - docker.io
-#          - nginx
-#        state: present
+- name: Install Docker and Nginx
+  apt:
+      name:
+        - docker.io
+        - nginx
+      state: present
 
-#    - name: Start Docker and enable on boot
-#      systemd:
-#        name: docker
-#        state: started
-#        enabled: true
+- name: Make sure docker is running and enabled
+  systemd:
+    name: docker
+    state: started
+    enabled: true 
 
-#    - name: Start Nginx and enable on boot
-#      systemd:
-#        name: nginx
-#        state: started
-#        enabled: true
-#
-#    - name: Start Jenkins container
-#      docker_container:
-#        name: jenkins
-#        image: jenkins/jenkins:lts
-#        state: started
-#        ports:
-#          - "8080:8080"
+- name: Make sure Nginx is running and enabled
+  systemd:
+    name: nginx
+    state: started
+    enabled: true
+
+# Next run the script for configuring nginx to proxy our app over ssl
+
+- name: Copy nginx config scriptfile to remote server
+  copy:
+    src: /home/rolly/.Server_Deployment/Ansible/roles/nginx/tls-config
+    dest: /home/ubuntu
+    remote_user: ubuntu
+    become: yes
+
+- name: Make the script executable
+  shell: chmod +x /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+
+- name: Execute the local script
+  script: /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
