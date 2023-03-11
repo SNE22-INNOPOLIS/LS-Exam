@@ -101,7 +101,7 @@ output "ec2_public_ip" {
 }
 
 resource "aws_key_pair" "ssh-key" {
-  key_name = "server-ssh-key"
+  key_name = "ls-exam-ssh-key"
   public_key = file(var.public_key_location)
   
 }
