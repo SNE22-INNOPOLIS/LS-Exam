@@ -10,11 +10,12 @@
 
     - name: Install Git, Docker, and Compose
       apt:
-        pkg:
+        name:
           - git
           - docker-compose
-          - docker
+          - docker.io
           - nginx
+        state: present
 
 #  roles:
 #    - nginx
