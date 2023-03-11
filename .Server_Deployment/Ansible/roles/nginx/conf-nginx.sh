@@ -5,7 +5,7 @@ sudo mkdir /etc/nginx/certificate
 sudo cd /etc/nginx/certificate
 sudo openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
     -subj "/C=RU/ST=Tarstan/L=Innopolis/O=Innopolis University/CN=IU" \
-    -out nginx-certificate.crt -keyout nginx.key-out
+    -out nginx-certificate.crt -keyout nginx.key
 
 # Download the recquired config file for creating nginx host
 cd
