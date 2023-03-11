@@ -49,12 +49,12 @@
 
 - name: Make the script executable
   hosts: all
-  become: true
+  become: yes
   tasks:
     - shell: chmod +x /home/rolly/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
 
-- name: Execute the local script
+- name: Execute the local script on remote server
   hosts: all
-  become: true
+  become: yes
   tasks:
     - script: /home/rolly/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
