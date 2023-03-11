@@ -136,7 +136,7 @@ resource "null_resource" "ansible" {
     
   } 
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${aws_instance.LS-Exam.public_ip}, --private-key ${var.private_key_location} ${var.ansible-script}"
+    command = "ansible-playbook -i ${aws_instance.LS-Exam.public_ip}, --user ubuntu --private-key ${var.private_key_location} ${var.ansible-script}"
   }
   depends_on = [ aws_instance.LS-Exam ]
 }
