@@ -1,53 +1,57 @@
----
 - name: Deploy Git, Docker, and Docker Compose
   hosts: all
   become: yes
   tasks:
     - name: Update apt repository and cache
-      apt: update_cache=yes force_apt_get=yes cache_valid_time=3600
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        cache_valid_time: 3600
 
     - name: Install Git, Docker, and Compose
       apt:
         pkg:
-          - git 
+          - git
           - docker-compose
-          - docker 
+          - docker
+
 #  roles:
-#  - nginx
-# - jenkins
+#    - nginx
+#    - jenkins
+
 - name: Make sure docker is running and enabled
   hosts: all
   tasks:
-    systemd:
-      - name: docker
-      - state: started
-      - enabled: true 
+    - systemd:
+        name: docker
+        state: started
+        enabled: true
 
 - name: Make sure Nginx is running and enabled
   hosts: all
-  tasks: 
-    systemd:
-      - name: nginx
-      - state: started
-      - enabled: true
+  tasks:
+    - systemd:
+        name: nginx
+        state: started
+        enabled: true
 
 # Next run the script for configuring nginx to proxy our app over ssl
 
 - name: Copy nginx config scriptfile to remote server
   hosts: all
   tasks:
-    copy:
-      src: /home/rolly/.Server_Deployment/Ansible/roles/nginx/tls-config
-      dest: /home/ubuntu
-      remote_user: ubuntu
-      become: yes
+    - copy:
+        src: /home/rolly/.Server_Deployment/Ansible/roles/nginx/tls-config
+        dest: /home/ubuntu
+        remote_user: ubuntu
+        become: yes
 
 - name: Make the script executable
   hosts: all
   tasks:
-    shell: chmod +x /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+    - shell: chmod +x /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
 
 - name: Execute the local script
   hosts: all
   tasks:
-    script: /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+    - script: /home/rolly/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
