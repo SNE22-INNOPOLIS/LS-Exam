@@ -7,5 +7,5 @@ public_key_location = "/home/rolly/.ssh/ls-exam.pub"
 private_key_location = "/home/rolly/.ssh/ls-exam"
 ssh-user = "ubuntu"
 ansible-script = "/home/rolly/LS-Exam/.Server_Deployment/Ansible/config.yaml"
-ansible_host_file = "/home/rolly/LS-Exam/.Server_Deployment/Ansible/hosts"
+#ansible_host_file = "/home/rolly/LS-Exam/.Server_Deployment/Ansible/hosts"
 

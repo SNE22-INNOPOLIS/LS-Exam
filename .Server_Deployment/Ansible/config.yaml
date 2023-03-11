@@ -5,7 +5,7 @@
 
   roles:
   - nginx
-  - jenkins
+# - jenkins
 
 #  tasks:
 #    - name: Install Docker and Nginx
