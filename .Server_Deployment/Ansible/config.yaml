@@ -47,11 +47,11 @@
         dest: /home/ubuntu
 #        remote_user: ubuntu
 
-- name: Make the script executable
-  hosts: all
-  become: yes
-  tasks:
-    - shell: chmod +x ~/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+#- name: Make the script executable
+#  hosts: all
+##  become: yes
+#  tasks:
+#    - shell: chmod +x ~/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
 
 - name: Execute the local script on remote server
   hosts: all
