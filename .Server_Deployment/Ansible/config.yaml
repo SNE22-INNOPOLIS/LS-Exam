@@ -51,10 +51,10 @@
   hosts: all
   become: yes
   tasks:
-    - shell: chmod +x /home/rolly/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+    - shell: chmod +x ~/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
 
 - name: Execute the local script on remote server
   hosts: all
   become: yes
   tasks:
-    - script: /home/rolly/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
+    - script: ~/LS-Exam/.Server_Deployment/Ansible/roles/nginx/conf-nginx.sh
