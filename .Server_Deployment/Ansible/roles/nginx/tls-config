@@ -6,6 +6,6 @@ server {
         ssl_certificate_key     /etc/nginx/certificate/nginx.key;
 
     location / {
-        proxy_pass http://localhost:80/;
+        proxy_pass http://localhost:8080/;
     }
 }
