@@ -37,5 +37,5 @@ jobs:
         echo "image pushed successfully to artifact repository>>>>"
     
     - name: Trigger git-lab deployment pipeline
-      run: curl -X POST -F token=${{secrets.GITLAB_TOKEN}} -F ref=main https://gitlab.com/api/v4/projects/44174197/trigger/pipeline
+      run: curl -X POST -F token=${{secrets.GITLAB_TOKEN}} -F ref=main https://gitlab.com/api/v4/projects/44347891/trigger/pipeline
 
